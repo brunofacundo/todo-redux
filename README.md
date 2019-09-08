@@ -1,6 +1,6 @@
 # Entendendo o Redux com hooks
 
-Se você está agora por dentro do mundo do React já deve ter ouvido falar do termo Redux, mas a final o que é ele? para que ser? onde vive?
+Se você está agora por dentro do mundo do React já deve ter ouvido falar do termo Redux, mas a final o que é ele? Para que ser? Onde vive?
 
 Vamos tentar responder algumas dessas perguntas nesse post.
 
@@ -96,41 +96,41 @@ O resultado será esse:
 
 ![Todo list](./assets/todo-list.gif)
 
-Como podemos ver acima o componente **TodoList** tem um estado que é compartilhado com seus filhos e para que eles possam alterar esse estado é passado via propriedades um função de **callback**.
+Como podemos ver acima, o componente **TodoList** tem um estado que é compartilhado com seus filhos. Para que eles possam alterar esse estado é passada uma função de **callback** via propriedades.
 
-Agora digamos que se os componentes filhos acima também tenha outros componentes filhos que altere o estado do **TodoList**, teríamos que ficar passado o callback de um filho para outro e isso em um sistema grande acaba ficando complexo e de difícil manutenção com o tempo.
+Agora digamos que, se os componentes filhos acima também tiverem outros componentes filhos que alterem o estado do **TodoList**, teríamos que ficar passando o callback de um filho para outro. Isso em um projeto grande acaba ficando complexo e de difícil manutenção com o tempo.
 
-Então podemos definir alguns critérios para decidimos se devemos usar o redux:
+Podemos então definir alguns critérios para decidirmos se devemos usar o redux:
 
--   Se o estado de um componente não tem "dono", ou seja o estado é compartilhado por vários componentes.
+-   Se o estado de um componente não tem "dono", ou seja, o estado é compartilhado por vários componentes.
 -   Se estado é manipulado por mais componentes.
--   Se as ações do usuário causam efeitos colaterais nos dados, ou seja se essa ação pode causa um efeito que altere outros componentes.
+-   Se as ações do usuário causam efeitos colaterais nos dados, ou seja, se essa ação pode causa um efeito que altere outros componentes.
 
-Pronto agora que definimos os critérios para usar o redux vamos entender o que é ele.
+Pronto, agora que definimos os critérios para usar o redux vamos entender o que ele é.
 
 # O que é o Redux
 
-É uma biblioteca que implementa a arquitetura **Flux** (_A arquitetura flux é uma formar de comunicação de vários elementos em tela_) e de forma bem resumida o redux é gerenciador de estados globais da aplicação. Podemos divido ele em 3 partes: **store**, **actions**, **reducers**.
+Redux é uma biblioteca que implementa a arquitetura **Flux** (_A arquitetura flux é uma formar de comunicação de vários elementos em tela_) e é usado como gerenciador de estados globais da aplicação que pode ser divido em 3 partes: **store**, **actions**, **reducers**.
 
 ## Store
 
-Podemos pensar como sendo o local onde irar ficar salvo o estado global da aplicação. O store é um **objeto JavaScript**.
+O store é um **objeto JavaScript**, podemos pensar nele como sendo o local onde irá ficar salvo o estado global da aplicação.
 
 ## Actions
 
-Actions são responsáveis por solicitar a mudança de algo no **store**, eles devem ser uma **função pura** e retornar um **object JavaScript** e esse object deve ter pelos menos um atributo **type** definido.
+Actions são responsáveis por solicitar a mudança de algo no **store**. Eles devem ser uma **função pura** e retornar um **objeto JavaScript**, esse objeto deve ter pelos menos um atributo **type** definido.
 
 ## Reducers
 
-Reducers são responsáveis receber as solicitações de mudança dos **actions** e alterar algum dado no store.
+Reducers são responsáveis por receber as solicitações de mudança dos **actions** e alterar algum dado no store.
 
-Vamos agora para a parte prática e adicionar o redux no nosso exemplo do começo do post.
+Agora iremos para a parte prática e adicionar o redux no nosso exemplo citado no começo do post.
 
 # Configurando o Redux
 
 #### Instalando o redux
 
-Precisamos instalar duas dependências no nosso projeto o **redux** e o **react-redux**, para isso basta executar esse comando no terminal:
+Precisamos instalar duas dependências no nosso projeto: o **redux** e o **react-redux**. Para isso basta executar o comando abaixo no terminal:
 
 ```sh
 yarn add redux react-redux
@@ -144,15 +144,15 @@ npm i --save redux react-redux
 
 #### Configurando o store, actions e redurces
 
-Agora vamos fazer a parte que dar um pouco mais de trabalho, mas que é a parte mais importante.
+Essa parte dá um pouco mais de trabalho, porém é a parte mais importante.
 
-Começaremos criando uma pasta **store** e ela irá ter a seguinte estrutura:
+Começaremos criando uma pasta **store** e ela terá a seguinte estrutura:
 
 ![Estrutura pasta store](./assets/store-folder.png)
 
--   **modules**: Nessa pasta irá ficar todos os módulos da nossa aplicação. Modulo aqui seria um agrupamento de actions e redurces por entidade, por exemplo iremos ter módulo **todo**.
+-   **modules**: Nessa pasta irão ficar todos os módulos da nossa aplicação, que são um agrupamento de actions e reducers por entidade.
 
-    -   **todo**: Nessa pasta irá ficar os arquivos de actions e reducer relacionados ao **todo**.
+    -   **todo**: Nessa pasta irão ficar os arquivos de actions e reducers relacionados ao **todo**.
 
         -   **actions.js**: Arquivo com as actions do **todo**.
         -   **reducer.js**: Arquivo com o reducer do **todo**.
@@ -181,7 +181,7 @@ export function removeTodo(index) {
 }
 ```
 
-Aqui definimos e exportamos todos os actions relacionados a entidade **todo**, como falamos anteriormente eles devem ser funções puras e retorna um objeto javascript, onde obrigatoriamente tem que ter um atributo **type**.
+Aqui definimos e exportamos todos os actions relacionados à entidade **todo**. Como falamos anteriormente, eles devem ser funções puras e retornar um objeto javascript, onde obrigatoriamente tem que ter um atributo **type**.
 
 _modules/todo/reducer.js_
 
@@ -202,7 +202,7 @@ export default function todo(state = initialState, action) {
 }
 ```
 
-No reducer exportamos apenas uma função, ela recebe o state atual e o action que foi disparado (é o mesmo objeto que retornamos nas funções do arquivo _actions.js_), dentro da função do reducer fizemos um switch para saber qual o action que estar sendo disparado naquele momento e retornamos um novo objeto com o state atualizado (não devemos altera o objeto state direto, sempre precisamos criar um novo).
+No reducer exportamos apenas uma função, ela recebe o state atual e o action que foi disparado (é o mesmo objeto que retornamos nas funções do arquivo _actions.js_). Dentro da função do reducer fizemos um switch para saber qual o action que está sendo disparado naquele momento e retornamos um novo objeto com o state atualizado (não devemos alterar o objeto state direto, sempre precisamos criar um novo).
 
 _modules/rootReducer.js_
 
@@ -216,7 +216,7 @@ export default combineReducers({
 });
 ```
 
-Aqui usamos uma função **combineReducers** do redux para combinar todos os nossos reducers em um objeto só. A medida que formos criado novos módulos, basta importa o reducer deles aqui e ir colocando dentro do objeto da função **combineReducers**.
+Aqui usamos a função **combineReducers** do redux para combinar todos os nossos reducers em um objeto só. A medida que formos criando novos módulos, basta importarmos o reducer deles aqui e colocá-los dentro do objeto da função **combineReducers**.
 
 _store/index.js_
 
@@ -228,13 +228,13 @@ import rootReducer from './modules/rootReducer';
 export default createStore(rootReducer);
 ```
 
-E por último usamos a função **createStore** também do redux, para criamos nosso store, passamos para ela os nossos reducers do arquivo _rootReducer.js_.
+E por último usamos a função **createStore**, também do redux, para criarmos nosso store e passarmos para ela os nossos reducers do arquivo _rootReducer.js_.
 
-Pronto agora falta só conectar os nossos componentes.
+Pronto, agora falta só conectar os nossos componentes.
 
 #### Conectado os componentes no redux
 
-Primeiro precisamos configurar o componente **Provider** do **react-redux** no nosso projeto. Esse componente deve fica por volta de toda a aplicação e ele recebe como propriedade o **store**. Para isso vamos criar um novo componente chamado **App** e colocar o **TodoList** dentro dele.
+Primeiro precisamos configurar o componente **Provider** do **react-redux** no nosso projeto. Esse componente deve ficar por volta de toda a aplicação e receber como propriedade o **store**. Para isso vamos criar um novo componente chamado **App** e colocar o **TodoList** dentro dele.
 
 _App.js_
 
@@ -273,7 +273,7 @@ export default function TodoList() {
 }
 ```
 
-Aqui removemos todos aqueles callbacks e também as propriedades que passávamos para os componentes filhos.
+Aqui removemos todos aqueles callbacks e as propriedades que passávamos para os componentes filhos.
 
 Vamos refatorar também os componentes **Header** e **List**.
 
@@ -342,13 +342,15 @@ export default function List() {
 }
 ```
 
-Aqui estamos usando dois hooks do react-redux o **useDispatch** e **useSelector**.
+Aqui estamos usando dois hooks do react-redux, o **useDispatch** e o **useSelector**.
 
--   **useDispatch**: Esse hook retornar uma função que iremos usar quando quisemos disparado uma ação para os redurces, passando como parâmetro um **action**.
--   **useSelector**: Iremos usar esse hooks quando queremos ler algum dado do store, ele recebe como parâmetro uma função que irar ser chamada recebendo todo o estado atual da aplicação, devemos retorna aquilo que queremos ler.
+-   **useDispatch**: Esse hook retorna uma função que iremos usar quando quisermos disparar uma ação para os reducers, enviando como parâmetro um **action**.
+-   **useSelector**: Iremos usar esse hook quando quisermos ler algum dado do store. Passaremos para ele uma função que recebe como parâmetro o estado atual e então retornar a propriedade que estamos buscando.
 
 # Conclusão
 
-Embora pareça um pouco complexo e verboso no começo, o redux facilita muito na comunicação de vários componentes e uma vez que o seu entendimento seja alcançado, terá um ganho de produtividade considerável. Espero que tenha dado para entender um pouco sobre como o redux funciona.
+Embora pareça um pouco complexo e verboso no começo, o redux facilita muito na comunicação de vários componentes e uma vez que o seu entendimento seja alcançado, terá um aumento de produtividade considerável.
 
-Todo o código usado no exemplo estar disponível nesse repositório.
+Espero que tenha dado para entender um pouco sobre como o redux funciona.
+
+Todo o código usado no exemplo está disponível nesse repositório.
