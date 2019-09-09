@@ -110,17 +110,17 @@ Pronto, agora que vimos alguns critérios para quando usar o redux, vamos entend
 
 # O que é o Redux
 
-Redux é uma biblioteca que implementa a arquitetura **Flux** (_A arquitetura flux é uma formar de comunicação de vários elementos em tela_) e é usado como gerenciador de estados globais da aplicação que pode ser divido em 3 partes: **store**, **actions**, **reducers**.
+Redux é uma biblioteca que implementa a arquitetura **Flux** (_A arquitetura flux é uma formar de comunicação de vários elementos em tela_) e é usado como gerenciador de estados globais da aplicação. Podemos dividi-lo em 3 partes: **store**, **actions**, **reducers**.
 
-## Store
+### Store
 
-O store é um **objeto JavaScript**, podemos pensar nele como sendo o local onde irá ficar salvo o estado global da aplicação.
+O store é um **objeto JavaScript**. Podemos pensar nele como sendo o local onde irá ficar salvo o estado global da aplicação.
 
-## Actions
+### Actions
 
 Actions são responsáveis por solicitar a mudança de algo no **store**. Eles devem ser uma **função pura** e retornar um **objeto JavaScript**, esse objeto deve ter pelos menos um atributo **type** definido.
 
-## Reducers
+### Reducers
 
 Reducers são responsáveis por receber as solicitações de mudança dos **actions** e alterar algum dado no store.
 
@@ -181,7 +181,7 @@ export function removeTodo(index) {
 }
 ```
 
-Aqui definimos e exportamos todos os actions relacionados à entidade **todo**. Como falamos anteriormente, eles devem ser funções puras e retornar um objeto javascript, onde obrigatoriamente tem que ter um atributo **type**.
+Aqui definimos e exportamos todos os actions relacionados à entidade **todo**. Como falamos anteriormente, eles devem ser funções puras e retornar um objeto javascript, que obrigatoriamente deve ter um atributo **type**.
 
 _modules/todo/reducer.js_
 
