@@ -100,13 +100,13 @@ Como podemos ver acima, o componente **TodoList** tem um estado que é compartil
 
 Agora digamos que, se os componentes filhos acima também tiverem outros componentes filhos que alterem o estado do **TodoList**, teríamos que ficar passando o callback de um filho para outro. Isso em um projeto grande acaba ficando complexo e de difícil manutenção com o tempo.
 
-Podemos então definir alguns critérios para decidirmos se devemos usar o redux:
+Caso o projeto atenda algum dos critérios abaixo, há uma grande possibilidade de ser preciso usar o redux:
 
 -   Se o estado de um componente não tem "dono", ou seja, o estado é compartilhado por vários componentes.
--   Se estado é manipulado por mais componentes.
+-   Se o estado é manipulado por mais componentes.
 -   Se as ações do usuário causam efeitos colaterais nos dados, ou seja, se essa ação pode causa um efeito que altere outros componentes.
 
-Pronto, agora que definimos os critérios para usar o redux vamos entender o que ele é.
+Pronto, agora que vimos alguns critérios para quando usar o redux, vamos entender o que ele é.
 
 # O que é o Redux
 
